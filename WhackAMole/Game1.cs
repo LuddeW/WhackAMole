@@ -106,10 +106,10 @@ namespace WhackAMole
             PlayTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
             TimePlayed = (int)PlayTime;
             Spawn(PlayTime);
-            int Velocity = CalcVelocity();
-            Rabbits[0].Movement(Velocity);
-            Rabbits[1].Movement(Velocity);
-            Rabbits[2].Movement(Velocity);
+            
+            Rabbits[0].Movement();
+            Rabbits[1].Movement();
+            Rabbits[2].Movement();
 
             ScoreCount();
 
@@ -306,8 +306,9 @@ namespace WhackAMole
                 if (Rabbits[i].SpawnTime > 0 && time > Rabbits[i].SpawnTime)
                 {
                     Rabbits[i].Dead = false;
-                    Rabbits[i].Velocity = CalcVelocity() * -1;
+                    Rabbits[i].Velocity = CalcVelocity();
                     Rabbits[i].SpawnTime = 0;
+                    Rabbits[i].Direction = -1;
                 }
             }
 
@@ -316,8 +317,10 @@ namespace WhackAMole
 
         }
         protected int CalcVelocity()
+
         {
-            return (int)(1.0f * Score / 50)+2;
+            Random Rnd = new Random();
+            return (int)(1.0f * Score / 50) + Rnd.Next(1, 3);
         }
 
 

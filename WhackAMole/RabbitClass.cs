@@ -18,7 +18,7 @@ namespace WhackAMole
         public Rectangle Hitbox;
         public bool Dead;
         public float SpawnTime;
-
+        public int Direction;
 
 
         public RabbitClass(Vector2 RabbitPos, float StopY, int FrontHeight, int RabbitWidth, int RabbitHeight)
@@ -31,21 +31,22 @@ namespace WhackAMole
             Dead = true;
             Velocity = 0;
             SpawnTime = 0;
+            Direction = -1;
             Hitbox = new Rectangle((int)RabbitPos.X, (int)RabbitPos.Y, RabbitWidth, RabbitHeight);
 
         }
-        public void Movement(int NewVelocity)
+        public void Movement()
         {
 
             int StopYLow = 450;
                 
             StopY = FrontHeight + 0.25f * RabbitHeight;
-            RabbitPos.Y = RabbitPos.Y + Velocity;
+            RabbitPos.Y = RabbitPos.Y + Velocity * Direction;
             Hitbox.Y = (int)RabbitPos.Y;
 
             if (Dead)
             {
-                Velocity = NewVelocity;
+                Direction = 1;
                 if (RabbitPos.Y >= StopYLow)
                 {
                     Velocity = 0;
@@ -56,7 +57,7 @@ namespace WhackAMole
                 
                 if (RabbitPos.Y <= StopY)
                 {
-                    Velocity = NewVelocity;
+                    Direction = 1;
                     
                     
                 }
