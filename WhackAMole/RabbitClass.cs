@@ -36,39 +36,25 @@ namespace WhackAMole
         public void Movement()
         {
             
-            Random NewRnd = new Random();
+            
             StopY = FrontHeight + 0.25f * RabbitHeight;
             RabbitPos.Y = RabbitPos.Y + Velocity;
             Hitbox.Y = (int)RabbitPos.Y;
-            if (Dead)
+
+            if (!Dead)
             {
-                if (Velocity < 0)
+                
+                if (RabbitPos.Y >= StopY)
                 {
                     Velocity = -2;
                 }
-                else
+                else if (RabbitPos.Y <= StopY)
                 {
                     Velocity = 2;
                 }
-            }
-            if (RabbitPos.Y <= StopY )
-            {
                
-                    Velocity = 2;
-                
-                
             }
             
-            else if (RabbitPos.Y >= 450)
-            {
-                
-                Velocity = -4;
-                if (Dead)
-                {
-                    Dead = false;
-                }
-
-            }
            
         }
 

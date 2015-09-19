@@ -184,10 +184,11 @@ namespace WhackAMole
             for (int i = 0; i < 3; i++)
             {
 
-                Velocity = Rnd.Next(-8, -1);
+                //Velocity = Rnd.Next(-8, -1);
 
                 TempPos.X = XPositions[i];
                 Rabbits[i] = new RabbitClass(TempPos, StopY, Front.Height, RabbitSprite.Width, RabbitSprite.Height, Velocity, Dead);
+                //Rabbits[i]. Dead = true;
             }
             
        }
