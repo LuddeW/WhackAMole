@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Ludwig/Desktop/Skola/ObjektorienteradSpelprogramering/Inlämning/WhackAMole/WhackAMole/Content/rabbit_background.png</File>
+    <File>C:/Users/Ludwig/Desktop/Skola/ObjektorienteradSpelprogramering/Inlämning/WhackAMole/WhackAMole/Content/rabbit_front.png</File>
+    <File>C:/Users/Ludwig/Desktop/Skola/ObjektorienteradSpelprogramering/Inlämning/WhackAMole/WhackAMole/Content/rabbit_ok.png</File>
+    <File>C:/Users/Ludwig/Desktop/Skola/ObjektorienteradSpelprogramering/Inlämning/WhackAMole/WhackAMole/Content/clock_0.png</File>
+    <File>C:/Users/Ludwig/Desktop/Skola/ObjektorienteradSpelprogramering/Inlämning/WhackAMole/WhackAMole/Content/NewSpriteFont.spritefont</File>
+    <File>C:/Users/Ludwig/Desktop/Skola/ObjektorienteradSpelprogramering/Inlämning/WhackAMole/WhackAMole/Content/end_screen.png</File>
+    <File>C:/Users/Ludwig/Desktop/Skola/ObjektorienteradSpelprogramering/Inlämning/WhackAMole/WhackAMole/Content/Clock_sheet.png</File>
+    <File>C:/Users/Ludwig/Desktop/Skola/ObjektorienteradSpelprogramering/Inlämning/WhackAMole/WhackAMole/Content/rabbit_knocked.png</File>
+    <File>C:/Users/Ludwig/Desktop/Skola/ObjektorienteradSpelprogramering/Inlämning/WhackAMole/WhackAMole/Content/rabbit_dead.png</File>
+  </SourceFiles>
+</SourceFileCollection>
