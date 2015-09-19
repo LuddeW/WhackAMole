@@ -2,3 +2,4 @@
 *.pdb
 [Dd]ebug*/
 [Rr]elease*/
+*.suo
