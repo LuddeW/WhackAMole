@@ -1,0 +1,4 @@
+*.exe
+*.pdb
+[Dd]ebug*/
+[Rr]elease*/
