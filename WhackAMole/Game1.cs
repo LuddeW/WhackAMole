@@ -38,6 +38,8 @@ namespace WhackAMole
         int iY;
         int xPos;
         int yPos;
+        int RabbitCount = 0;
+        int MaxRabbitCount = 25;
         public bool Dead = true;
 
         public Game1()
@@ -262,7 +264,7 @@ namespace WhackAMole
 
         protected void End()
         {
-            if (TimePlayed >= 60)
+            if (TimePlayed >= 60 || RabbitCount >= MaxRabbitCount && AllRabbitsDead())
             {
                 spriteBatch.Draw(EndScreen, new Rectangle(0, 0, Background.Width, Background.Height), Color.White);
 
@@ -293,24 +295,29 @@ namespace WhackAMole
         {
             Random Rnd = new Random();
 
-
-            for (int i = 0; i < 3; i++)
+            if (RabbitCount <= MaxRabbitCount)
             {
-                if (Rabbits[i].SpawnTime == 0 && Rabbits[i].Dead && Rabbits[i].Velocity == 0)
+                for (int i = 0; i < 3; i++)
                 {
-                    //int IRndSpawn = 
-                    float RndSpawn = 1.0f * Rnd.Next(1, 100) / 100;
 
-                    Rabbits[i].SpawnTime = time + RndSpawn;
-                }
-                if (Rabbits[i].SpawnTime > 0 && time > Rabbits[i].SpawnTime)
-                {
-                    Rabbits[i].Dead = false;
-                    Rabbits[i].Velocity = CalcVelocity();
-                    Rabbits[i].SpawnTime = 0;
-                    Rabbits[i].Direction = -1;
+                    if (Rabbits[i].SpawnTime == 0 && Rabbits[i].Dead && Rabbits[i].Velocity == 0)
+                    {
+
+                        float RndSpawn = 1.0f * Rnd.Next(1, 100 - (int)time) / 100;
+
+                        Rabbits[i].SpawnTime = time + RndSpawn;
+                    }
+                    if (Rabbits[i].SpawnTime > 0 && time > Rabbits[i].SpawnTime)
+                    {
+                        Rabbits[i].Dead = false;
+                        Rabbits[i].Velocity = CalcVelocity();
+                        Rabbits[i].SpawnTime = 0;
+                        Rabbits[i].Direction = -1;
+                        RabbitCount++;
+                    }
                 }
             }
+            
 
 
 
@@ -322,7 +329,19 @@ namespace WhackAMole
             Random Rnd = new Random();
             return (int)(1.0f * Score / 50) + Rnd.Next(1, 3);
         }
-
+        protected Boolean AllRabbitsDead()
+        {
+            Boolean result = true;
+            for (int i = 0; i < 3; i++)
+            {
+                if (!Rabbits[i].Dead)
+                {
+                    result = false;
+                    break;
+                }
+            }
+            return result;
+        }
 
 
 
