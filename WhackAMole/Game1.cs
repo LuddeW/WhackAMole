@@ -113,7 +113,7 @@ namespace WhackAMole
             Rabbits[1].Movement();
             Rabbits[2].Movement();
 
-            ScoreCount();
+            CheckRabbitHit();
 
             base.Update(gameTime);
         }
@@ -138,6 +138,7 @@ namespace WhackAMole
             spriteBatch.End();
             base.Draw(gameTime);
         }
+        // Load the pictures
         protected void LoadPictures()
         {
             Background = Content.Load<Texture2D>(@"rabbit_background");
@@ -149,13 +150,14 @@ namespace WhackAMole
             RabbitDead = Content.Load<Texture2D>(@"rabbit_dead");
 
         }
+        // Draw the sprites
         protected void DrawPictures()
         {
 
             spriteBatch.Draw(Background, new Rectangle(0, 0, Background.Width, Background.Height), Color.White);
             Vector2 CenterClock = new Vector2(Window.ClientBounds.Width / 2 - ClockSprite.Width / 2, 10);
             spriteBatch.Draw(ClockSprite, CenterClock, Color.White);
-            SheetPos();
+            ClockPos();
             for (int i = 0; i < 3; i++)
             {
                 if (Rabbits[i].Dead == false)
@@ -174,6 +176,7 @@ namespace WhackAMole
             End();
 
         }
+        // Load the rabbits
         protected void LoadRabbits()
         {
 
@@ -194,12 +197,12 @@ namespace WhackAMole
             }
 
         }
-
+        // Load the fonts
         protected void LoadFonts()
         {
             Font = Content.Load<SpriteFont>(@"NewSpriteFont");
         }
-
+        // Draw the fonts
         protected void DrawFonts()
         {
             string score = "Score:" + Score;
@@ -215,8 +218,8 @@ namespace WhackAMole
             }
 
         }
-
-        protected void ScoreCount()
+        // Check if a rabbit is hitted
+        protected void CheckRabbitHit()
         {
             MousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
 
@@ -231,7 +234,7 @@ namespace WhackAMole
             PreviousMouseState();
 
         }
-
+        // Check previous mousestate
         protected void PreviousMouseState()
         {
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
@@ -243,7 +246,7 @@ namespace WhackAMole
                 PrevMState = false;
             }
         }
-
+        // Check if the rabbit is hit and give score
         protected void RabbitHit()
         {
             for (int i = 0; i < 3; i++)
@@ -261,7 +264,7 @@ namespace WhackAMole
                 }
             }
         }
-
+        // Drawing the endscreen and reset rabbit positions
         protected void End()
         {
             if (GameEnded())
@@ -276,8 +279,8 @@ namespace WhackAMole
 
             }
         }
-
-        protected void SheetPos()
+        // Draw the clock face
+        protected void ClockPos()
         {
 
             iY = TimePlayed / 10;
@@ -291,6 +294,7 @@ namespace WhackAMole
 
 
         }
+        // Spawn rabbits
         protected void Spawn(float time)
         {
             Random Rnd = new Random();
@@ -299,7 +303,7 @@ namespace WhackAMole
             {
                 for (int i = 0; i < 3; i++)
                 {
-
+                    // Give rabbits a spawntime
                     if (Rabbits[i].SpawnTime == 0 && Rabbits[i].Dead && Rabbits[i].Velocity == 0)
                     {
 
@@ -307,6 +311,7 @@ namespace WhackAMole
 
                         Rabbits[i].SpawnTime = time + RndSpawn;
                     }
+                    // Spawn rabbits
                     if (Rabbits[i].SpawnTime > 0 && time > Rabbits[i].SpawnTime)
                     {
                         Rabbits[i].Dead = false;
@@ -317,18 +322,15 @@ namespace WhackAMole
                     }
                 }
             }
-            
-
-
-
-
         }
+        // Calculate the velocity
         protected int CalcVelocity()
 
         {
             Random Rnd = new Random();
             return (int)(1.0f * Score / 50) + Rnd.Next(2, 4);
         }
+        // Check if all rabbit's ded
         protected Boolean AllRabbitsDead()
         {
             Boolean result = true;
@@ -342,6 +344,7 @@ namespace WhackAMole
             }
             return result;
         }
+        // Check if game's ended
         protected Boolean GameEnded()
         {
             return TimePlayed >= 60 || (RabbitCount >= MaxRabbitCount && AllRabbitsDead());

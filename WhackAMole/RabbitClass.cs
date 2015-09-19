@@ -6,7 +6,8 @@ using Microsoft.Xna.Framework;
 using System.Threading;
 
 namespace WhackAMole
-{
+
+{   // Methods for rabbits
     class RabbitClass
     {
         public Vector2 RabbitPos;
@@ -20,7 +21,7 @@ namespace WhackAMole
         public float SpawnTime;
         public int Direction;
 
-
+        // Rabbit constructor
         public RabbitClass(Vector2 RabbitPos, float StopY, int FrontHeight, int RabbitWidth, int RabbitHeight)
         {
             this.RabbitPos = RabbitPos;
@@ -35,6 +36,7 @@ namespace WhackAMole
             Hitbox = new Rectangle((int)RabbitPos.X, (int)RabbitPos.Y, RabbitWidth, RabbitHeight);
 
         }
+        // Move a rabbit
         public void Movement()
         {
 
