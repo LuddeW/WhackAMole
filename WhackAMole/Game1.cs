@@ -203,7 +203,7 @@ namespace WhackAMole
         protected void DrawFonts()
         {
             string score = "Score:" + Score;
-            if (TimePlayed >= 60)
+            if (GameEnded())
             {
 
                 spriteBatch.DrawString(Font, score, new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2 + 25), Color.White);
@@ -264,7 +264,7 @@ namespace WhackAMole
 
         protected void End()
         {
-            if (TimePlayed >= 60 || RabbitCount >= MaxRabbitCount && AllRabbitsDead())
+            if (GameEnded())
             {
                 spriteBatch.Draw(EndScreen, new Rectangle(0, 0, Background.Width, Background.Height), Color.White);
 
@@ -295,7 +295,7 @@ namespace WhackAMole
         {
             Random Rnd = new Random();
 
-            if (RabbitCount <= MaxRabbitCount)
+            if (RabbitCount < MaxRabbitCount)
             {
                 for (int i = 0; i < 3; i++)
                 {
@@ -303,7 +303,7 @@ namespace WhackAMole
                     if (Rabbits[i].SpawnTime == 0 && Rabbits[i].Dead && Rabbits[i].Velocity == 0)
                     {
 
-                        float RndSpawn = 1.0f * Rnd.Next(1, 100 - (int)time) / 100;
+                        float RndSpawn = 1.0f * Rnd.Next(30, 100 - (int)time) / 100;
 
                         Rabbits[i].SpawnTime = time + RndSpawn;
                     }
@@ -327,7 +327,7 @@ namespace WhackAMole
 
         {
             Random Rnd = new Random();
-            return (int)(1.0f * Score / 50) + Rnd.Next(1, 3);
+            return (int)(1.0f * Score / 50) + Rnd.Next(2, 4);
         }
         protected Boolean AllRabbitsDead()
         {
@@ -342,7 +342,10 @@ namespace WhackAMole
             }
             return result;
         }
-
+        protected Boolean GameEnded()
+        {
+            return TimePlayed >= 60 || (RabbitCount >= MaxRabbitCount && AllRabbitsDead());
+        }
 
 
     } 
