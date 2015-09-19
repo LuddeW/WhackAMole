@@ -29,7 +29,6 @@ namespace WhackAMole
         public float X1 = 450 / 2 - 65;
         public float X2 = 275;
         public float StopY;
-        public int Velocity;
         public int NewVelocity;
         bool PrevMState;
         int Score = 0;
@@ -39,8 +38,8 @@ namespace WhackAMole
         int iY;
         int xPos;
         int yPos;
-        public bool Dead = false;
-        
+        public bool Dead = true;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -48,11 +47,11 @@ namespace WhackAMole
             graphics.PreferredBackBufferHeight = 450;
             graphics.ApplyChanges();
             IsMouseVisible = true;
-            
+
 
             Content.RootDirectory = "Content";
         }
-     
+
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -78,8 +77,8 @@ namespace WhackAMole
             LoadPictures();
             LoadRabbits();
             LoadFonts();
-            
-            
+
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -102,18 +101,19 @@ namespace WhackAMole
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            
-            // TODO: Add your update logic here
-              PlayTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-              TimePlayed = (int)PlayTime;
-              
-              Rabbits[0].Movement();
-              Rabbits[1].Movement();
-              Rabbits[2].Movement();
 
-              ScoreCount();
-            
-              base.Update(gameTime);
+            // TODO: Add your update logic here
+            PlayTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            TimePlayed = (int)PlayTime;
+            Spawn(PlayTime);
+            int Velocity = CalcVelocity();
+            Rabbits[0].Movement(Velocity);
+            Rabbits[1].Movement(Velocity);
+            Rabbits[2].Movement(Velocity);
+
+            ScoreCount();
+
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -127,9 +127,9 @@ namespace WhackAMole
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-           
+
             DrawPictures();
-            
+
             DrawFonts();
 
 
@@ -141,11 +141,11 @@ namespace WhackAMole
             Background = Content.Load<Texture2D>(@"rabbit_background");
             Front = Content.Load<Texture2D>(@"rabbit_front");
             RabbitSprite = Content.Load<Texture2D>(@"rabbit_ok");
-            ClockSprite = Content.Load <Texture2D>(@"clock_0");
+            ClockSprite = Content.Load<Texture2D>(@"clock_0");
             EndScreen = Content.Load<Texture2D>(@"end_screen");
             ClockSheet = Content.Load<Texture2D>(@"Clock_sheet");
             RabbitDead = Content.Load<Texture2D>(@"rabbit_dead");
-            
+
         }
         protected void DrawPictures()
         {
@@ -159,24 +159,24 @@ namespace WhackAMole
                 if (Rabbits[i].Dead == false)
                 {
 
-                   spriteBatch.Draw(RabbitSprite, Rabbits[i].RabbitPos, Color.White);
+                    spriteBatch.Draw(RabbitSprite, Rabbits[i].RabbitPos, Color.White);
                 }
                 else
                 {
                     spriteBatch.Draw(RabbitDead, Rabbits[i].RabbitPos, Color.White);
                 }
             }
-            
-            
+
+
             spriteBatch.Draw(Front, new Vector2(0, Window.ClientBounds.Height - Front.Height), Color.White);
             End();
 
         }
         protected void LoadRabbits()
         {
-           
-            TempPos.Y = Window.ClientBounds.Height ;
-            Random Rnd = new Random();
+
+            TempPos.Y = Window.ClientBounds.Height;
+
             float[] XPositions = new float[3];
             XPositions[0] = X0;
             XPositions[1] = X1;
@@ -184,14 +184,14 @@ namespace WhackAMole
             for (int i = 0; i < 3; i++)
             {
 
-                //Velocity = Rnd.Next(-8, -1);
 
+                
                 TempPos.X = XPositions[i];
-                Rabbits[i] = new RabbitClass(TempPos, StopY, Front.Height, RabbitSprite.Width, RabbitSprite.Height, Velocity, Dead);
-                //Rabbits[i]. Dead = true;
+                Rabbits[i] = new RabbitClass(TempPos, StopY, Front.Height, RabbitSprite.Width, RabbitSprite.Height);
+
             }
-            
-       }
+
+        }
 
         protected void LoadFonts()
         {
@@ -203,33 +203,33 @@ namespace WhackAMole
             string score = "Score:" + Score;
             if (TimePlayed >= 60)
             {
-                
-                spriteBatch.DrawString(Font, score, new Vector2(Window.ClientBounds.Width/2 , Window.ClientBounds.Height/2 + 25) , Color.White);
+
+                spriteBatch.DrawString(Font, score, new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2 + 25), Color.White);
             }
             else
             {
                 Vector2 scorelen = Font.MeasureString(score);
                 spriteBatch.DrawString(Font, score, new Vector2(Window.ClientBounds.Width / 2 - scorelen.X / 2, Window.ClientBounds.Height - (Front.Height - 50)), Color.White);
             }
-            
+
         }
 
         protected void ScoreCount()
         {
             MousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
-            
+
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
                 if (!PrevMState)
                 {
-                    RabbitHit();                    
-                }   
-                
+                    RabbitHit();
                 }
+
+            }
             PreviousMouseState();
 
         }
-      
+
         protected void PreviousMouseState()
         {
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
@@ -265,19 +265,19 @@ namespace WhackAMole
             if (TimePlayed >= 60)
             {
                 spriteBatch.Draw(EndScreen, new Rectangle(0, 0, Background.Width, Background.Height), Color.White);
-                
+
                 for (int i = 0; i < 3; i++)
                 {
                     Rabbits[i].RabbitPos.Y = 450;
                     Rabbits[i].Velocity = 0;
                 }
-                
+
             }
         }
-      
+
         protected void SheetPos()
         {
-            
+
             iY = TimePlayed / 10;
             iX = TimePlayed % 10;
             xPos = 122 * iX;
@@ -285,16 +285,43 @@ namespace WhackAMole
 
             spriteBatch.Draw(ClockSheet, new Rectangle(Window.ClientBounds.Width / 2 - 122 / 2, 12, 122, 122),
             new Rectangle(xPos, yPos, 122, 122), Color.White);
-            
-            
 
-        }  
-        protected void Restart()
-        {
+
 
         }
-    }
+        protected void Spawn(float time)
+        {
+            Random Rnd = new Random();
 
 
-     
+            for (int i = 0; i < 3; i++)
+            {
+                if (Rabbits[i].SpawnTime == 0 && Rabbits[i].Dead && Rabbits[i].Velocity == 0)
+                {
+                    //int IRndSpawn = 
+                    float RndSpawn = 1.0f * Rnd.Next(1, 100) / 100;
+
+                    Rabbits[i].SpawnTime = time + RndSpawn;
+                }
+                if (Rabbits[i].SpawnTime > 0 && time > Rabbits[i].SpawnTime)
+                {
+                    Rabbits[i].Dead = false;
+                    Rabbits[i].Velocity = CalcVelocity() * -1;
+                    Rabbits[i].SpawnTime = 0;
+                }
+            }
+
+
+
+
+        }
+        protected int CalcVelocity()
+        {
+            return (int)(1.0f * Score / 50)+2;
+        }
+
+
+
+
+    } 
 }
