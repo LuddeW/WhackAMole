@@ -360,18 +360,25 @@ namespace WhackAMole
         {
             return TimePlayed >= 60 || (RabbitCount >= MaxRabbitCount && AllRabbitsDead());
         }
-        // Draw the weapons
+        // Draw the weapons and rotate it against the mouse
         protected void DrawWeapons()
         {
+            Vector2 ShotgunPos = new Vector2(Window.ClientBounds.Width / 2, 425);
+            float DirectionX = MousePos.X - (ShotgunPos.X - Shotgun.Width / 2);
+            float DirectionY = MousePos.Y - (ShotgunPos.Y - Shotgun.Width / 2);
+            float Rotation = (float)Math.Atan2(DirectionY, DirectionX);
+            Vector2 Origin = new Vector2(Shotgun.Width / 2, Shotgun.Height / 2);
 
             spriteBatch.Draw(Chainsaw, new Vector2(Window.ClientBounds.Width / 2, 145 - Chainsaw.Height / 2), Color.White);
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed && !PrevMState)
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
-                spriteBatch.Draw(ShotgunFire, new Vector2(Window.ClientBounds.Width / 2 - Shotgun.Width / 2, 350), Color.White);
+                
+                spriteBatch.Draw(ShotgunFire, new Vector2(ShotgunPos.X, ShotgunPos.Y), Color.White);
+                
             }
             else
             {
-                spriteBatch.Draw(Shotgun, new Vector2(Window.ClientBounds.Width / 2 - Shotgun.Width / 2, 350), Color.White);
+                spriteBatch.Draw(Shotgun, ShotgunPos, null, Color.White, Rotation + ((float)Math.PI * 0.5f), Origin, 1, SpriteEffects.None, 0);
             }
             
             
