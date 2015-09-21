@@ -33,3 +33,4 @@ C:\Users\Ludwig\Desktop\Skola\ObjektorienteradSpelprogramering\Inlämning\WhackA
 C:\Users\Ludwig\Desktop\Skola\ObjektorienteradSpelprogramering\Inlämning\WhackAMole\WhackAMole\bin\Windows\Debug\Content\Clock_sheet.xnb
 C:\Users\Ludwig\Desktop\Skola\ObjektorienteradSpelprogramering\Inlämning\WhackAMole\WhackAMole\bin\Windows\Debug\Content\rabbit_knocked.xnb
 C:\Users\Ludwig\Desktop\Skola\ObjektorienteradSpelprogramering\Inlämning\WhackAMole\WhackAMole\bin\Windows\Debug\Content\rabbit_dead.xnb
+C:\Users\Ludwig\Desktop\Skola\ObjektorienteradSpelprogramering\Inlämning\WhackAMole\WhackAMole\bin\Windows\Debug\Content\Chainsaw.xnb

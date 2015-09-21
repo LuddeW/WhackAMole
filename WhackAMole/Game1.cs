@@ -21,6 +21,7 @@ namespace WhackAMole
         Texture2D EndScreen;
         Texture2D ClockSheet;
         Texture2D RabbitDead;
+        Texture2D Chainsaw;
         RabbitClass[] Rabbits = new RabbitClass[3];
         SpriteFont Font;
         Vector2 MousePos;
@@ -148,6 +149,8 @@ namespace WhackAMole
             EndScreen = Content.Load<Texture2D>(@"end_screen");
             ClockSheet = Content.Load<Texture2D>(@"Clock_sheet");
             RabbitDead = Content.Load<Texture2D>(@"rabbit_dead");
+            Chainsaw = Content.Load<Texture2D>(@"chainsaw");
+
 
         }
         // Draw the sprites
@@ -158,6 +161,7 @@ namespace WhackAMole
             Vector2 CenterClock = new Vector2(Window.ClientBounds.Width / 2 - ClockSprite.Width / 2, 10);
             spriteBatch.Draw(ClockSprite, CenterClock, Color.White);
             ClockPos();
+            spriteBatch.Draw(Chainsaw, new Vector2(Window.ClientBounds.Width / 2, 145 - Chainsaw.Height / 2), Color.White);
             for (int i = 0; i < 3; i++)
             {
                 if (Rabbits[i].Dead == false)
