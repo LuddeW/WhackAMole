@@ -23,6 +23,8 @@ namespace WhackAMole
         Texture2D RabbitDead;
         Texture2D Chainsaw;
         Texture2D Crosshair;
+        Texture2D Shotgun;
+        Texture2D ShotgunFire;
         RabbitClass[] Rabbits = new RabbitClass[3];
         SpriteFont Font;
         Vector2 MousePos;
@@ -133,7 +135,7 @@ namespace WhackAMole
 
 
             DrawPictures();
-
+            DrawWeapons();
             DrawFonts();
 
 
@@ -152,7 +154,8 @@ namespace WhackAMole
             RabbitDead = Content.Load<Texture2D>(@"rabbit_dead");
             Chainsaw = Content.Load<Texture2D>(@"chainsaw");
             Crosshair = Content.Load<Texture2D>(@"crosshair");
-
+            Shotgun = Content.Load<Texture2D>(@"shotgun");
+            ShotgunFire = Content.Load<Texture2D>(@"shotgun_fire");
 
         }
         // Draw the sprites
@@ -179,6 +182,7 @@ namespace WhackAMole
 
 
             spriteBatch.Draw(Front, new Vector2(0, Window.ClientBounds.Height - Front.Height), Color.White);
+            
             spriteBatch.Draw(Crosshair, new Vector2(MousePos.X - Crosshair.Width / 2, MousePos.Y - Crosshair.Height / 2), Color.White);
             End();
 
@@ -221,7 +225,7 @@ namespace WhackAMole
             else
             {
                 Vector2 scorelen = Font.MeasureString(score);
-                spriteBatch.DrawString(Font, score, new Vector2(Window.ClientBounds.Width / 2 - scorelen.X / 2, Window.ClientBounds.Height - (Front.Height - 50)), Color.White);
+                spriteBatch.DrawString(Font, score, new Vector2(/*Window.ClientBounds.Width / 2 - scorelen.X / 2*/ 0,/* Window.ClientBounds.Height - (Front.Height - 50)*/ 0), Color.Black);
             }
 
         }
@@ -356,7 +360,23 @@ namespace WhackAMole
         {
             return TimePlayed >= 60 || (RabbitCount >= MaxRabbitCount && AllRabbitsDead());
         }
+        // Draw the weapons
+        protected void DrawWeapons()
+        {
 
+            spriteBatch.Draw(Chainsaw, new Vector2(Window.ClientBounds.Width / 2, 145 - Chainsaw.Height / 2), Color.White);
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed && !PrevMState)
+            {
+                spriteBatch.Draw(ShotgunFire, new Vector2(Window.ClientBounds.Width / 2 - Shotgun.Width / 2, 350), Color.White);
+            }
+            else
+            {
+                spriteBatch.Draw(Shotgun, new Vector2(Window.ClientBounds.Width / 2 - Shotgun.Width / 2, 350), Color.White);
+            }
+            
+            
+            End();
+        }
 
     } 
 }

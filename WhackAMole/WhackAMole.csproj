@@ -63,6 +63,8 @@
     <Content Include="Content\rabbit_front.png" />
     <Content Include="Content\rabbit_knocked.png" />
     <Content Include="Content\rabbit_ok.png" />
+    <Content Include="Content\shotgun.png" />
+    <Content Include="Content\shotgun_fire.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
