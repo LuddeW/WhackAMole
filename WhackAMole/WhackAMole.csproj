@@ -54,6 +54,7 @@
     <Content Include="Content\chainsaw.png" />
     <Content Include="Content\clock_0.png" />
     <Content Include="Content\Clock_sheet.png" />
+    <Content Include="Content\crosshair.png" />
     <Content Include="Content\end_screen.png" />
     <Content Include="Content\rabbit_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

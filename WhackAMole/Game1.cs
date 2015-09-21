@@ -22,6 +22,7 @@ namespace WhackAMole
         Texture2D ClockSheet;
         Texture2D RabbitDead;
         Texture2D Chainsaw;
+        Texture2D Crosshair;
         RabbitClass[] Rabbits = new RabbitClass[3];
         SpriteFont Font;
         Vector2 MousePos;
@@ -49,7 +50,7 @@ namespace WhackAMole
             graphics.PreferredBackBufferWidth = 450;
             graphics.PreferredBackBufferHeight = 450;
             graphics.ApplyChanges();
-            IsMouseVisible = true;
+            IsMouseVisible = false;
 
 
             Content.RootDirectory = "Content";
@@ -150,6 +151,7 @@ namespace WhackAMole
             ClockSheet = Content.Load<Texture2D>(@"Clock_sheet");
             RabbitDead = Content.Load<Texture2D>(@"rabbit_dead");
             Chainsaw = Content.Load<Texture2D>(@"chainsaw");
+            Crosshair = Content.Load<Texture2D>(@"crosshair");
 
 
         }
@@ -177,6 +179,7 @@ namespace WhackAMole
 
 
             spriteBatch.Draw(Front, new Vector2(0, Window.ClientBounds.Height - Front.Height), Color.White);
+            spriteBatch.Draw(Crosshair, new Vector2(MousePos.X - Crosshair.Width / 2, MousePos.Y - Crosshair.Height / 2), Color.White);
             End();
 
         }
