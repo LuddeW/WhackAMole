@@ -363,7 +363,7 @@ namespace WhackAMole
         // Draw the weapons and rotate it against the mouse
         protected void DrawWeapons()
         {
-            Vector2 ShotgunPos = new Vector2(Window.ClientBounds.Width / 2, 425);
+            Vector2 ShotgunPos = new Vector2(Window.ClientBounds.Width / 2, 430);
             float DirectionX = MousePos.X - (ShotgunPos.X - Shotgun.Width / 2);
             float DirectionY = MousePos.Y - (ShotgunPos.Y - Shotgun.Width / 2);
             float Rotation = (float)Math.Atan2(DirectionY, DirectionX);
@@ -373,12 +373,12 @@ namespace WhackAMole
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
                 
-                spriteBatch.Draw(ShotgunFire, new Vector2(ShotgunPos.X, ShotgunPos.Y), Color.White);
+                spriteBatch.Draw(ShotgunFire, ShotgunPos, null, Color.White, Rotation + ((float)Math.PI * 0.37f), Origin, 1, SpriteEffects.None, 0);
                 
             }
             else
             {
-                spriteBatch.Draw(Shotgun, ShotgunPos, null, Color.White, Rotation + ((float)Math.PI * 0.5f), Origin, 1, SpriteEffects.None, 0);
+                spriteBatch.Draw(Shotgun, ShotgunPos, null, Color.White, Rotation + ((float)Math.PI * 0.37f), Origin, 1, SpriteEffects.None, 0);
             }
             
             
