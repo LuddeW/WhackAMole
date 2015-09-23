@@ -118,6 +118,7 @@ namespace WhackAMole
             Rabbits[2].Movement();
 
             CheckRabbitHit();
+            Restart();
 
             base.Update(gameTime);
         }
@@ -217,15 +218,17 @@ namespace WhackAMole
         protected void DrawFonts()
         {
             string score = "Score:" + Score;
+            string restart = "Press 'R' to restart";
             if (GameEnded())
             {
 
                 spriteBatch.DrawString(Font, score, new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2 + 25), Color.White);
+                spriteBatch.DrawString(Font, restart, new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2 + 50), Color.White);
             }
             else
             {
-                Vector2 scorelen = Font.MeasureString(score);
-                spriteBatch.DrawString(Font, score, new Vector2(/*Window.ClientBounds.Width / 2 - scorelen.X / 2*/ 0,/* Window.ClientBounds.Height - (Front.Height - 50)*/ 0), Color.Black);
+                
+                spriteBatch.DrawString(Font, score, new Vector2 (0, 0), Color.Black);
             }
 
         }
@@ -318,7 +321,7 @@ namespace WhackAMole
                     if (Rabbits[i].SpawnTime == 0 && Rabbits[i].Dead && Rabbits[i].Velocity == 0)
                     {
 
-                        float RndSpawn = 1.0f * Rnd.Next(30, 100 - (int)time) / 100;
+                        float RndSpawn = 1.0f * Rnd.Next(1, 100 - (int)time) / 10;
 
                         Rabbits[i].SpawnTime = time + RndSpawn;
                     }
@@ -384,6 +387,21 @@ namespace WhackAMole
             
             
             End();
+        }
+
+        public void Restart()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.R))
+            {
+                Score = 0;
+                PlayTime = 0;
+                RabbitCount = 0;
+                for (int i = 0; i < 3; i++)
+                {
+                    Rabbits[i].RabbitPos.Y = 450;
+                }
+                
+            }
         }
 
     } 
