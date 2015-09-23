@@ -116,10 +116,8 @@ namespace WhackAMole
             Rabbits[0].Movement();
             Rabbits[1].Movement();
             Rabbits[2].Movement();
-
             CheckRabbitHit();
-            Restart();
-
+           
             base.Update(gameTime);
         }
 
@@ -223,7 +221,7 @@ namespace WhackAMole
             {
 
                 spriteBatch.DrawString(Font, score, new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2 + 25), Color.White);
-                spriteBatch.DrawString(Font, restart, new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2 + 50), Color.White);
+                spriteBatch.DrawString(Font, restart, new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 2 + 75), Color.White);
             }
             else
             {
@@ -284,7 +282,7 @@ namespace WhackAMole
             if (GameEnded())
             {
                 spriteBatch.Draw(EndScreen, new Rectangle(0, 0, Background.Width, Background.Height), Color.White);
-
+                Restart();
                 for (int i = 0; i < 3; i++)
                 {
                     Rabbits[i].RabbitPos.Y = 450;
@@ -388,7 +386,7 @@ namespace WhackAMole
             
             End();
         }
-
+        // Using this for a restart
         public void Restart()
         {
             if (Keyboard.GetState().IsKeyDown(Keys.R))
