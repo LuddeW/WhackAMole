@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\backgroundpic.png" />
     <Content Include="Content\chainsaw.png" />
     <Content Include="Content\clock_0.png" />
     <Content Include="Content\Clock_sheet.png" />
@@ -65,6 +66,7 @@
     <Content Include="Content\rabbit_ok.png" />
     <Content Include="Content\shotgun.png" />
     <Content Include="Content\shotgun_fire.png" />
+    <Content Include="Content\shotgun_sound.wav" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

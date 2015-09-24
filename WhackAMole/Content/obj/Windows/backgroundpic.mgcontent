@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Ludwig/Desktop/Skola/ObjektorienteradSpelprogramering/Inlämning/WhackAMole/WhackAMole/Content/rabbit_background.png</SourceFile>
-  <SourceTime>2015-09-24T14:20:43.3190837+02:00</SourceTime>
-  <DestFile>C:/Users/Ludwig/Desktop/Skola/ObjektorienteradSpelprogramering/Inlämning/WhackAMole/WhackAMole/Content/bin/Windows/rabbit_background.xnb</DestFile>
-  <DestTime>2015-09-24T14:20:48.7540055+02:00</DestTime>
+  <SourceFile>C:/Users/Ludwig/Desktop/Skola/ObjektorienteradSpelprogramering/Inlämning/WhackAMole/WhackAMole/Content/backgroundpic.png</SourceFile>
+  <SourceTime>2015-09-24T14:26:11.712225+02:00</SourceTime>
+  <DestFile>C:/Users/Ludwig/Desktop/Skola/ObjektorienteradSpelprogramering/Inlämning/WhackAMole/WhackAMole/Content/bin/Windows/backgroundpic.xnb</DestFile>
+  <DestTime>2015-09-24T14:26:22.5573681+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T19:14:44+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -37,3 +37,5 @@ C:\Users\Ludwig\Desktop\Skola\ObjektorienteradSpelprogramering\Inlämning\WhackA
 C:\Users\Ludwig\Desktop\Skola\ObjektorienteradSpelprogramering\Inlämning\WhackAMole\WhackAMole\obj\x86\Debug\WhackAMole.csprojResolveAssemblyReference.cache
 C:\Users\Ludwig\Desktop\Skola\ObjektorienteradSpelprogramering\Inlämning\WhackAMole\WhackAMole\obj\x86\Debug\WhackAMole.exe
 C:\Users\Ludwig\Desktop\Skola\ObjektorienteradSpelprogramering\Inlämning\WhackAMole\WhackAMole\obj\x86\Debug\WhackAMole.pdb
+C:\Users\Ludwig\Desktop\Skola\ObjektorienteradSpelprogramering\Inlämning\WhackAMole\WhackAMole\bin\Windows\Debug\Content\shotgun_sound.xnb
+C:\Users\Ludwig\Desktop\Skola\ObjektorienteradSpelprogramering\Inlämning\WhackAMole\WhackAMole\bin\Windows\Debug\Content\backgroundpic.xnb

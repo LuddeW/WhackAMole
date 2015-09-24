@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 using System;
 using System.Collections.Generic;
 
@@ -14,6 +15,7 @@ namespace WhackAMole
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D BackgroundPic;
         Texture2D Background;
         Texture2D Front;
         Texture2D RabbitSprite;
@@ -28,6 +30,7 @@ namespace WhackAMole
         RabbitClass[] Rabbits = new RabbitClass[3];
         SpriteFont Font;
         Vector2 MousePos;
+        SoundEffect ShotgunSound;
         public Vector2 TempPos;
         public float X0 = 43;
         public float X1 = 450 / 2 - 65;
@@ -53,7 +56,7 @@ namespace WhackAMole
             graphics.PreferredBackBufferHeight = 450;
             graphics.ApplyChanges();
             IsMouseVisible = false;
-
+            
 
             Content.RootDirectory = "Content";
         }
@@ -83,6 +86,7 @@ namespace WhackAMole
             LoadPictures();
             LoadRabbits();
             LoadFonts();
+            LoadSounds();
 
 
             // TODO: use this.Content to load your game content here
@@ -112,7 +116,7 @@ namespace WhackAMole
             PlayTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
             TimePlayed = (int)PlayTime;
             Spawn(PlayTime);
-            
+          
             Rabbits[0].Movement();
             Rabbits[1].Movement();
             Rabbits[2].Movement();
@@ -155,12 +159,13 @@ namespace WhackAMole
             Crosshair = Content.Load<Texture2D>(@"crosshair");
             Shotgun = Content.Load<Texture2D>(@"shotgun");
             ShotgunFire = Content.Load<Texture2D>(@"shotgun_fire");
+            BackgroundPic = Content.Load<Texture2D>(@"backgroundpic");
 
         }
         // Draw the sprites
         protected void DrawPictures()
         {
-
+            spriteBatch.Draw(BackgroundPic, new Rectangle(0, 0, BackgroundPic.Width, BackgroundPic.Height), Color.White);
             spriteBatch.Draw(Background, new Rectangle(0, 0, Background.Width, Background.Height), Color.White);
             Vector2 CenterClock = new Vector2(Window.ClientBounds.Width / 2 - ClockSprite.Width / 2, 10);
             spriteBatch.Draw(ClockSprite, CenterClock, Color.White);
@@ -226,11 +231,16 @@ namespace WhackAMole
             else
             {
                 
-                spriteBatch.DrawString(Font, score, new Vector2 (0, 0), Color.Black);
+                spriteBatch.DrawString(Font, score, new Vector2 (0, 0), Color.White);
             }
 
         }
-        // Check if a rabbit is hitted
+        // Load sounds
+        protected void LoadSounds()
+        {
+            ShotgunSound = Content.Load<SoundEffect>(@"shotgun_sound");
+        }
+        // Check if a rabbit is hitted and play the shotgun sound
         protected void CheckRabbitHit()
         {
             MousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
@@ -240,6 +250,7 @@ namespace WhackAMole
                 if (!PrevMState)
                 {
                     RabbitHit();
+                    ShotgunSound.Play();
                 }
 
             }
@@ -376,6 +387,8 @@ namespace WhackAMole
             {
                 
                 spriteBatch.Draw(ShotgunFire, ShotgunPos, null, Color.White, Rotation + ((float)Math.PI * 0.37f), Origin, 1, SpriteEffects.None, 0);
+                
+                    
                 
             }
             else

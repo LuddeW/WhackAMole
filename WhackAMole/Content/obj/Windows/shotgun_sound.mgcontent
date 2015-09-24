@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/Ludwig/Desktop/Skola/ObjektorienteradSpelprogramering/Inlämning/WhackAMole/WhackAMole/Content/shotgun_sound.wav</SourceFile>
+  <SourceTime>2015-09-24T13:02:55.7171364+02:00</SourceTime>
+  <DestFile>C:/Users/Ludwig/Desktop/Skola/ObjektorienteradSpelprogramering/Inlämning/WhackAMole/WhackAMole/Content/bin/Windows/shotgun_sound.xnb</DestFile>
+  <DestTime>2015-09-24T13:05:16.2613009+02:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2015-04-29T19:14:44+02:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2015-04-29T19:14:44+02:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
