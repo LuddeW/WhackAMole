@@ -155,7 +155,6 @@ namespace WhackAMole
             EndScreen = Content.Load<Texture2D>(@"end_screen");
             ClockSheet = Content.Load<Texture2D>(@"Clock_sheet");
             RabbitDead = Content.Load<Texture2D>(@"rabbit_dead");
-            Chainsaw = Content.Load<Texture2D>(@"chainsaw");
             Crosshair = Content.Load<Texture2D>(@"crosshair");
             Shotgun = Content.Load<Texture2D>(@"shotgun");
             ShotgunFire = Content.Load<Texture2D>(@"shotgun_fire");
@@ -170,7 +169,6 @@ namespace WhackAMole
             Vector2 CenterClock = new Vector2(Window.ClientBounds.Width / 2 - ClockSprite.Width / 2, 10);
             spriteBatch.Draw(ClockSprite, CenterClock, Color.White);
             ClockPos();
-            spriteBatch.Draw(Chainsaw, new Vector2(Window.ClientBounds.Width / 2, 145 - Chainsaw.Height / 2), Color.White);
             for (int i = 0; i < 3; i++)
             {
                 if (Rabbits[i].Dead == false)
@@ -375,21 +373,29 @@ namespace WhackAMole
         // Draw the weapons and rotate it against the mouse
         protected void DrawWeapons()
         {
-
-            spriteBatch.Draw(Chainsaw, new Vector2(Window.ClientBounds.Width / 2, 145 - Chainsaw.Height / 2), Color.White);
+            const float MaxRotation = -0.616862953f;
+            const float MinRotation = -1.92643225f;
+            const float Rotation270 = 1.38441348f;
+           
 
             Vector2 ShotgunPos = new Vector2(Window.ClientBounds.Width / 2, 430);
             float DirectionX = MousePos.X - (ShotgunPos.X - Shotgun.Width / 2);
             float DirectionY = MousePos.Y - (ShotgunPos.Y - Shotgun.Width / 2);
             float Rotation = (float)Math.Atan2(DirectionY, DirectionX);
+            // Limit rotation on the weapon
+            if (Rotation < MinRotation || Rotation > Rotation270)
+            {
+                Rotation = MinRotation;
+            }
+            if (Rotation > MaxRotation && Rotation < Rotation270)
+            {
+                Rotation = MaxRotation;
+            }
             Vector2 Origin = new Vector2(Shotgun.Width / 2, Shotgun.Height / 2);
             if (Mouse.GetState().LeftButton == ButtonState.Pressed)
             {
                 
                 spriteBatch.Draw(ShotgunFire, ShotgunPos, null, Color.White, Rotation + ((float)Math.PI * 0.37f), Origin, 1, SpriteEffects.None, 0);
-                
-                    
-                
             }
             else
             {
