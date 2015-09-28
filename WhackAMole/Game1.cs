@@ -238,7 +238,7 @@ namespace WhackAMole
         {
             ShotgunSound = Content.Load<SoundEffect>(@"shotgun_sound");
         }
-        // Check if a rabbit is hitted and play the shotgun sound
+        // Check if the mouse is pressed and play the shotgun sound
         protected void CheckRabbitHit()
         {
             MousePos = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
@@ -328,7 +328,7 @@ namespace WhackAMole
                     if (Rabbits[i].SpawnTime == 0 && Rabbits[i].Dead && Rabbits[i].Velocity == 0)
                     {
 
-                        float RndSpawn = 1.0f * Rnd.Next(1, 100 - (int)time) / 10;
+                        float RndSpawn = 1.0f * Rnd.Next(1, 100 - (int)time) / 50;
 
                         Rabbits[i].SpawnTime = time + RndSpawn;
                     }
